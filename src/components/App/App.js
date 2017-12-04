@@ -19,8 +19,8 @@ class App extends Component {
       };
     };
   }
-  addTrack() {
-    
+  addTrack(track) {
+    if (this.state.id)
   }
   render() {
     return (
