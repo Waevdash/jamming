@@ -3,17 +3,34 @@ import logo from './logo.svg';
 import './App.css';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist'
+import SearchBar from '../SearchBar/SearchBar'
+
+const playlistName = 'My Playlist'
+const playlistTracks = []
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchResults: {
+        name: ,
+        artist: ,
+        album:
+      };
+    };
+  }
+  addTrack() {
+    
+  }
   render() {
     return (
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <!-- Add a SearchBar component -->
+          <SearchBar />
           <div className="App-playlist">
-            <!-- <SearchBar /> -->
-            <!-- <Playlist /> -->
+            <SearchResults searchResults={this.state} />
+            <Playlist playlistName={playlistName} playlistTracks={playlistTracks}/>
           </div>
         </div>
       </div>
