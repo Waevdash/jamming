@@ -13,10 +13,10 @@ class App extends Component {
     super(props)
     this.state = {
       searchResults: {
-        name: ,
-        artist: ,
-        album:
-      };
+        name: undefined,
+        artist: undefined,
+        album: undefined
+      }
     };
     this.state.addTrack = this.state.addTrack.bind(this)
     this.state.removeTrack = this.state.removeTrack.bind(this)
@@ -42,7 +42,7 @@ class App extends Component {
   }
   updatePlaylistName(name){
     this.setState({
-      this.playlistName = name
+      playlistName: name
     })
   }
   render() {
