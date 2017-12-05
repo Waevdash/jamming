@@ -20,6 +20,7 @@ class App extends Component {
     };
     this.state.addTrack = this.state.addTrack.bind(this)
     this.state.removeTrack = this.state.removeTrack.bind(this)
+    this.state.updatePlaylistName = this.state.updatePlayListName(this)
   }
   addTrack(track) {
     if (!this.state.playlistTracks.id.include(track.id)) {
@@ -52,7 +53,7 @@ class App extends Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state} onAdd={this.addTrack} />
-            <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={this.removeTrack}/>
+            <Playlist playlistName={playlistName} playlistTracks={playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName}/>
           </div>
         </div>
       </div>
