@@ -18,9 +18,25 @@ class App extends Component {
         album:
       };
     };
+    this.state.addTrack = this.state.addTrack.bind(this)
   }
   addTrack(track) {
-    if (this.state.id)
+    if (!this.state.playlistTracks.id.include(track.id)) {
+        let pushTrack = this.state.playlistTrack.push(track)
+      this.setState({
+          playlistTrack: pushTrack
+      })
+    }
+  }
+  removeTrack(track){
+    if (this.state.playlistTracks.id.include(track.id)) {
+      let filterTrack = this.state.playlistTrack.filter(tracks => {
+        tracks.id != this.state.playlistTracks.id
+      })
+      this.setState({
+        playlistTrack: filterTrack
+      })
+    }
   }
   render() {
     return (
