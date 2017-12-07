@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './Track.css';
 
 class Track extends Component {
@@ -8,6 +7,13 @@ class Track extends Component {
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
   }
+  renderAction(){
+    if(this.props.isRemoval) {
+      return (<a className="Track-action" onClick={this.removeTrack}> - </a>)
+    } else {
+      return (<a className="Track-action" onClick={this.addTrack}> + </a>)
+    }
+  }
   render() {
     return (
       <div className="Track">
@@ -15,15 +21,15 @@ class Track extends Component {
           <h3>{this.props.searchResult.name}</h3>
           <p>{this.props.searchResult.artist}| {this.props.searchResult.album}</p>
         </div>
-        <a className="Track-action" onClick={this.addTrack} onClick={this.removeTrack}><!-- + or - will go here --></a>
+        {this.renderAction()}
       </div>
     );
   }
   addTrack(){
-    this.props.track = this.props.onAdd
+    this.props.onAdd(this.props.track);
   }
   removeTrack(){
-    this.props.track = this.props.onRemove
+    this.props.onRemove(this.props.track);
   }
 }
 
