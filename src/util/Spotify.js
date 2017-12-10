@@ -48,8 +48,8 @@ const Spotify = {
         headers: {Authorization: `Bearer ${accessToken}`}
       }).then(response => {return response.json}).then(jsonResponse => {
         return (userID = jsonResponse.id)
-      });
-      new Promise(fetch(`https://cors-anywhere.herokuapp.com//v1/users/${userID}/playlists`, {
+      })
+      new Promise(fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/users/${userID}/playlists`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${accessToken}`

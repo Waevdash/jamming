@@ -46,8 +46,8 @@ class App extends Component {
     let trackURIs = [];
     Spotify.savePlaylist();
     this.setState({
-      searchResults: []
-      playlistName: 'My Playlist';
+      searchResults: [],
+      playlistName: 'My Playlist'
     })
   }
   search(searchTerm){
