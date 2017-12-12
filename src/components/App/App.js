@@ -9,13 +9,13 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchResults: [{track}],
+      searchResults: [],
       playlistName: 'My Playlist',
       playlistTracks: []
     };
     this.addTrack = this.addTrack.bind(this)
     this.removeTrack = this.removeTrack.bind(this)
-    this.updatePlaylistName = this.updatePlayListName.bind(this)
+    this.updatePlaylistName = this.updatePlaylistName.bind(this)
     this.savePlaylist = this.savePlaylist.bind(this)
     this.search = this.search.bind(this)
   }
@@ -60,7 +60,7 @@ class App extends Component {
         <div className="App">
           <SearchBar onSearch={this.search} />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} playlistTracks={this.state.playlistTracks} />
             <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} onSave={this.savePlaylist}/>
           </div>
         </div>

@@ -22,21 +22,21 @@ const Spotify = {
     }
   },
   search(searchTerm){
-    return new Promise(fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
+    return fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
       headers: {Authorization: `Bearer ${accessToken}`}
     }).then(response => {return response.json}).then(jsonResponse => {
       if (jsonResponse.tracks) {
-        return jsonResponse.tracks.map(track => {
-          id: track.id;
-          name: track.name;
-          artist: track.artists[0].name;
-          album: track.album.name;
-          URI: track.uri;
-        })
+        return jsonResponse.track.map(track => ({
+          id: track.id,
+          name: track.name,
+          artist: track.artists[0].name,
+          album: track.album.name,
+          URI: track.uri,
+        }));
       } else {
         return jsonResponse.tracks.map(track => {[]})
         }
-    }))
+    })
   },
   savePlaylist(playlistName,trackURIs){
     if (playlistName && trackURIs) {
@@ -48,21 +48,21 @@ const Spotify = {
         headers: {Authorization: `Bearer ${accessToken}`}
       }).then(response => {return response.json}).then(jsonResponse => {
         return (userID = jsonResponse.id)
-      })
-      new Promise(fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/users/${userID}/playlists`, {
+      }),
+      fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/users/${userID}/playlists`, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${accessToken}`
-          Content-type: "application/json"
+          Authorization: `Bearer ${accessToken}`,
+          "Content-type": "application/json",
         },
         body: {
           name: {playlistName}
         },
-      })).then(response => {return repsonse.json}).then(jsonResponse => {
+      })).then(response => {return response.json}).then(jsonResponse => {
         return (playlistID = jsonResponse.id)
       })
     } else {return}
-    window.location = spotifyAuthorizationURL
+    window.location = this.spotifyAuthorizationURL
 
   }
 }

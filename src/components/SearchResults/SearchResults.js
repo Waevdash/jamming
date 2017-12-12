@@ -3,6 +3,11 @@ import './SearchResults.css';
 import TrackList from '../TrackList/TrackList';
 
 class SearchResults extends Component {
+  renderAction(){
+    if(this.props.searchResults === this.props.playlistTrack){
+
+    }
+  }
   render() {
     return (
       <div className="SearchResults">
