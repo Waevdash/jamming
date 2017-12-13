@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 let clientId = '3752d707ec8d4097a81ec5f728e8d036'
 let redirect_uri = 'http://localhost:3000/'
 let accessToken = undefined
@@ -9,7 +7,7 @@ const Spotify = {
     if (accessToken){
       return new Promise(resolve => resolve(accessToken));
     } else {
-      const spotifyAuthorizationURL = `https://cors-anywhere.herokuapp.com/https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=playlist-modify-public&response_type=token$state=123`
+      const spotifyAuthorizationURL = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${redirect_uri}&scope=playlist-modify-public&response_type=token$state=123`
       const accessTokenExist = window.location.href.match('/access_token=([^&]*)/');
       const expiresInExist = window.location.href.match('/expires_in=([^&]*)/');
       if (accessTokenExist && expiresInExist) {
@@ -22,7 +20,7 @@ const Spotify = {
     }
   },
   search(searchTerm){
-    return fetch(`https://cors-anywhere.herokuapp.com/https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
+    return fetch(`https://api.spotify.com/v1/search?type=track&q=${searchTerm}`, {
       headers: {Authorization: `Bearer ${accessToken}`}
     }).then(response => {return response.json}).then(jsonResponse => {
       if (jsonResponse.tracks) {
@@ -34,7 +32,7 @@ const Spotify = {
           URI: track.uri,
         }));
       } else {
-        return jsonResponse.tracks.map(track => {[]})
+        return [];
         }
     })
   },
